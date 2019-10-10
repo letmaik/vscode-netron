@@ -1,0 +1,67 @@
+{
+	"name": "netron",
+	"description": "Netron",
+	"version": "0.0.1",
+	"publisher": "letmaik",
+	"license": "MIT",
+	"author": {
+        "name": "Maik Riechert",
+        "url": "https://github.com/letmaik"
+    },
+	"engines": {
+		"vscode": "^1.39.0"
+	},
+	"enableProposedApi": true,
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:netron.open",
+		"onWebviewEditor:netron"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/letmaik/vscode-netron.git"
+	},
+	"main": "./out/extension.js",
+	"contributes": {
+		"webviewEditors": [
+			{
+				"viewType": "netron",
+				"displayName": "Netron",
+				"priority": "default",
+				"selector": [
+					{
+						"filenamePattern": "*.{onnx,pb,pbtxt,h5,keras,mlmodel,caffemodel,prototxt,model,pt,pth,param,tflite,t7,cntk,meta}"
+					}
+				]
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "netron.open"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "netron.open",
+				"title": "Open file with Netron"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "tslint -p ./",
+		"watch": "tsc -w -p ./"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@types/node": "^10.5.2",
+		"tslint": "^5.16.0",
+		"typescript": "^3.5.1",
+		"@types/vscode": "^1.39.0"
+	}
+}
